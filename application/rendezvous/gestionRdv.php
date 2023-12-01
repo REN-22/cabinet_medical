@@ -27,7 +27,7 @@
 
         <?php
 
-        $requete = 'SELECT u.nom, u.prenom, m.nom, m.prenom, r.date_RV, r.heure_RV, r.duree, r.id_usager, r.id_medecin 
+        $requete = 'SELECT u.nom, u.prenom, m.nom, m.prenom, r.date_RV, r.heure_RV, r.duree, r.id_usager, r.id_medecin, r.id_rdv
                     FROM rendez_vous r, usager u, medecin m
                     WHERE u.id_usager = r.id_usager
                     AND m.id_medecin = r.id_medecin
@@ -49,12 +49,12 @@
         <td>" . $row[5] . "</td>
         <td>" . $row[6] . "</td>
         <td>
-            <a href='./modifierRdv.php?id_usager=" . $row[7] . "&id_medecin=" . $row[8] . "&date_RV=" . $row[4] . "&heure_RV=" . $row[5] . "&duree=" . $row[6] . "'>
+            <a href='./modifierRdv.php?id_usager=" . $row[7] . "&id_medecin=" . $row[8] . "&date_RV=" . $row[4] . "&heure_RV=" . $row[5] . "&duree=" . $row[6] . "&id_rdv=" . $row[9] . "'>
                 <img src='../public/edit-icon.png' alt='edit icon' width='15'/>
             </a>
         </td>
         <td>
-            <a href='./supprimerRdv.php?id_usager=" . $row[7] . "&id_medecin=" . $row[8] . "&date_RV=" . $row[4] . "&heure_RV=" . $row[5] . "&duree=" . $row[6] . "'>
+            <a href='./supprimerRdv.php?id_usager=" . $row[7] . "&id_medecin=" . $row[8] . "&date_RV=" . $row[4] . "&heure_RV=" . $row[5] . "&duree=" . $row[6] . "&id_rdv=" . $row[9] . "'>
                 <img src='../public/delete-icon.png' alt='edit icon' width='15'/>
             </a>
         </td>

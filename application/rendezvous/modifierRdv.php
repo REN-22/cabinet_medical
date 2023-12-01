@@ -35,17 +35,9 @@
     <?php
     require("../components/configDB.php");
 
-    $requete = 'SELECT * FROM rendez_vous WHERE id_usager = ' . $_GET['id_usager'] . ' 
-                AND id_medecin = ' . $_GET['id_medecin'] . '
-                AND date_RV = "' . $_GET['date_RV'] . '"
-                AND heure_RV = "' . $_GET['heure_RV'] . '"
-                AND duree = "' . $_GET['duree'] . '"';
+    $requete = 'SELECT * FROM rendez_vous WHERE id_rdv = ' . $_GET['id_rdv'];
 
-    $suppretion ='DELETE FROM rendez_vous WHERE id_usager = ' . $_GET['id_usager'] . ' 
-                AND id_medecin = ' . $_GET['id_medecin'] . '
-                AND date_RV = "' . $_GET['date_RV'] . '"
-                AND heure_RV = "' . $_GET['heure_RV'] . '"
-                AND duree = "' . $_GET['duree'] . '"';
+    $suppression = 'DELETE FROM rendez_vous WHERE id_rdv = ' . $_GET['id_rdv'];
                 
     $getMedecin = 'SELECT * FROM medecin';
 
@@ -95,9 +87,9 @@
                     ?>
                 </select><br>
                 <label>Date du rendez-vous: </label>
-                <input class="ajouter-input" type="date" name="date-rdv" value="<?php echo $row[2]; ?>"><br>
+                <input class="ajouter-input" type="date" name="date-rdv" value="<?php echo $row[3]; ?>"><br>
                 <label>Heure du rendez-vous: </label>
-                <input class="ajouter-input" type="time" name="heure-rdv" value="<?php echo $row[3]; ?>"><br>
+                <input class="ajouter-input" type="time" name="heure-rdv" value="<?php echo $row[4]; ?>"><br>
                 <label>Durée du rendez-vous: </label>
                 <?php
                 echo '<select class="ajouter-input" name="heure" />';
