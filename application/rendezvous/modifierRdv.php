@@ -53,11 +53,33 @@
         //Traitement de la requete
         $row = mysqli_fetch_row($resquery);
     }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $client = $_POST['client'];
+        $medecin = $_POST['medecin'];
+        $date_rdv = $_POST['date-rdv'];
+        $heure_rdv = $_POST['heure-rdv'];
+        $heure = $_POST['heure'];
+        $min = $_POST['min'];
+        $sec = $_POST['sec'];
+
+        $updateRdv = "UPDATE rendez_vous SET id_usager = '$client', id_medecin = '$medecin', date_RV = '$date_rdv', heure_RV = '$heure_rdv', duree = '$heure:$min:$sec' WHERE id_rdv = " . $_GET['id_rdv'];
+
+        if (mysqli_query($link, $updateRdv)) {
+            echo "Rendez-vous modifié avec succès.";
+
+             // Redirection vers gestionRdv.php après 2 secondes
+            header("refresh:2;url=./gestionRdv.php");
+        } else {
+
+            echo "Erreur lors de la modification du rendez-vous: " . mysqli_error($link);
+        }
+    }
     ?>
     <div class="ajouter">
         <div class="ajouter-rdv">
             <h1 class="ajouter-titre">modifier une consultations</h1>
-            <form class="ajouter-rdv-form" action="./ajoutRdv.php" method="post">
+            <form class="ajouter-rdv-form" action="" method="post">
                 <label>Client: </label>
                 <select class="ajouter-input" name="client" class="ajouter-input">
                     <?php
@@ -107,7 +129,7 @@
                 ?>
                 <div class="small-button-group">
                     <input class="small-button" type="submit" name="submit" value="Valider">
-                    <input class="small-button" type="reset" name="reset" value="Reset">
+                    <input class="small-button" type="annuler" name="reset" value="Reset">
                 </div>
             </form>
         </div>
