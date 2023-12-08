@@ -125,7 +125,7 @@
                         echo '<option value="' . $i . '"> ' . $i . " " . $name . '</option>';
                     }
                     echo '</select><br>';
-                }
+                } 
                 ?>
                 <div class="small-button-group">
                     <input class="small-button" type="submit" name="submit" value="Valider">
