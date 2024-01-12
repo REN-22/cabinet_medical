@@ -17,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
 <body>
 <form method="post" action="./index.php">
     Nom d'utilisateur: <input type="text" name="username"><br>

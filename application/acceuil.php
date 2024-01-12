@@ -36,6 +36,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <a class="nav-link" href="./medecin/gestionMedecin.php">
             <h2>médecins</h2>
         </a>
+        <a class="nav-link" href="./logout.php">
+            <h2>déconnection</h2>
+        </a>
     </div>
 </header>
 

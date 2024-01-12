@@ -3,6 +3,45 @@
 *::after {
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Ajoutez ces styles à la fin de votre fichier CSS existant */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+form input {
+  margin: 1%;
+  padding: 1%;
+  width: 200px;
+}
+
+form input[type="submit"] {
+  background-color: #1d1abc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: grey;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 2%;
+}
+
 
 header {
   display: flex;
@@ -16,12 +55,15 @@ header {
   margin: 1%;
   color: white;
   text-transform: capitalize;
+  align-self: flex-start; /* Ajout de cette propriété pour placer le logo à gauche */
 }
 
 .nav-menu {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   width: 46%;
+  align-self: flex-end; /* Ajout de cette propriété pour placer le menu à droite */
 }
 
 .active {
