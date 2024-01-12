@@ -114,19 +114,26 @@
                 <input class="ajouter-input" type="time" name="heure-rdv" value="<?php echo $row[4]; ?>"><br>
                 <label>Durée du rendez-vous: </label>
                 <?php
-                echo '<select class="ajouter-input" name="heure" />';
+                list($heure, $minute, $seconde) = explode(':', $row[5]);
+
+                echo '<select class="ajouter-input" name="heure">';
                 for ($i = 0; $i < 25; $i++) {
-                    echo '<option value="' . $i . '"> ' . $i . " heure" . '</option>';
+                    $selected = ($i == $heure) ? 'selected' : '';
+                    echo '<option value="' . $i . '" ' . $selected . '> ' . $i . " heure" . '</option>';
                 }
                 echo '</select><br>';
-                foreach (array("min", "sec") as $name) {
-                    echo '<label></label><select class="ajouter-input" name="' . $name . '" />';
-                    for ($i = 0; $i < 61; $i++) {
-                        echo '<option value="' . $i . '"> ' . $i . " " . $name . '</option>';
+
+                foreach (array("min", "sec") as $index => $name) {
+                    echo '<label></label><select class="ajouter-input" name="' . $name . '">';
+                    $max_value = ($index == 0) ? 60 : 60; // 60 minutes or seconds
+                    for ($i = 0; $i < $max_value; $i++) {
+                        $selected = ($i == ($index == 0 ? $minute : $seconde)) ? 'selected' : '';
+                        echo '<option value="' . $i . '" ' . $selected . '> ' . $i . " " . $name . '</option>';
                     }
                     echo '</select><br>';
-                } 
+                }
                 ?>
+
                 <div class="small-button-group">
                     <input class="small-button" type="submit" name="submit" value="Valider">
                     <input class="small-button" type="annuler" name="reset" value="Reset">
