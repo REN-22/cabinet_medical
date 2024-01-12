@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.php'); // Redirige vers la page de connexion
+    exit;
+}
+?>
+<?php
 require("../components/configDB.php");
 
 $num_secu = $_POST['num-secu'];

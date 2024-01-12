@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.php'); // Redirige vers la page de connexion
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

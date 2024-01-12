@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.php'); // Redirige vers la page de connexion
+    exit;
+}
+?>
+<?php
 require("../components/configDB.php");
 
 $requeteDelUsager = 'DELETE FROM usager WHERE id_usager = "' . $_GET['id'] . '"';

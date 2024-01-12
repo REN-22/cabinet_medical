@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.php'); // Redirige vers la page de connexion
+    exit;
+}
+?>
+<?php
 require("../components/configDB.php");
 
 $requeteDelMedecin = 'DELETE FROM medecin WHERE id_medecin = "' . $_GET['id'] . '"';
@@ -17,4 +25,4 @@ if (!$resquery = mysqli_query($link, $requeteDelMedecin)) {
 ?>
 
 
-<input type="button" onclick="window.location.href = '../index.php'" value="Retour" />
+<input type="button" onclick="window.location.href = '../acceuil.php'" value="Retour" />

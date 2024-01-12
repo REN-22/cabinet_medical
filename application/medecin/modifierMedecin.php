@@ -1,4 +1,12 @@
-﻿<!DOCTYPE HTML>
+﻿<?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.php'); // Redirige vers la page de connexion
+    exit;
+}
+?>
+<!DOCTYPE HTML>
 <html>
 
 <head>
@@ -11,7 +19,7 @@
 
 <header>
     <div class="logo">
-        <a class="logo-link" href="../index.php">
+        <a class="logo-link" href="../acceuil.php">
             <img src="../public/logo.png" />
         </a>
     </div>
@@ -60,7 +68,7 @@
                 <div class="small-button-group">
                     <input class="small-button" type='submit' name='submit' value='Modifier' />
                     <input class="small-button" type='reset' name='reset' value='Reset' />
-                    <input class="small-button" type="button" onclick="window.location.href = '../index.php'" value="Retour" />
+                    <input class="small-button" type="button" onclick="window.location.href = '../acceuil.php'" value="Retour" />
                 </div>
             </form>
         </div>

@@ -1,4 +1,12 @@
 ﻿<?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.php'); // Redirige vers la page de connexion
+    exit;
+}
+?>
+<?php
 require("../components/configDB.php");
 
 $id = $_GET['id'];
@@ -59,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <header>
     <div class="logo">
-        <a class="logo-link" href="../index.php">
+        <a class="logo-link" href="../acceuil.php">
             <img src="../public/logo.png" />
         </a>
     </div>

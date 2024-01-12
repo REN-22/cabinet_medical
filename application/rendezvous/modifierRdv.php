@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: ../index.php'); // Redirige vers la page de connexion
+    exit;
+}
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -11,7 +19,7 @@
 
 <header>
     <div class="logo">
-        <a class="logo-link" href="../index.php">
+        <a class="logo-link" href="../acceuil.php">
             <img src="../public/logo.png" />
         </a>
     </div>
@@ -125,7 +133,7 @@
 
                 foreach (array("min", "sec") as $index => $name) {
                     echo '<label></label><select class="ajouter-input" name="' . $name . '">';
-                    $max_value = ($index == 0) ? 60 : 60; // 60 minutes or seconds
+                    $max_value = ($index == 0) ? 60 : 60;
                     for ($i = 0; $i < $max_value; $i++) {
                         $selected = ($i == ($index == 0 ? $minute : $seconde)) ? 'selected' : '';
                         echo '<option value="' . $i . '" ' . $selected . '> ' . $i . " " . $name . '</option>';
