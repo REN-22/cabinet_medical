@@ -17,27 +17,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <link href="../styles.css" rel="stylesheet">
 </head>
 
-<header>
-    <div class="logo">
-        <a class="logo-link" href="../acceuil.php">
-            <img src="../public/logo.png" />
-        </a>
-    </div>
-    <div class="nav-menu">
-        <a class="nav-link" href="../stats/stats.php">
-            <h2>Stats</h2>
-        </a>
-        <a class="nav-link" href="./gestionRdv.php">
-            <h2>consultations</h2>
-        </a>
-        <a class="nav-link" href="../usager/gestionUsager.php">
-            <h2>usagers</h2>
-        </a>
-        <a class="nav-link" href="../medecin/gestionMedecin.php">
-            <h2>médecins</h2>
-        </a>
-    </div>
-</header>
+<?php include("../components/header.php"); ?>
 
 <body>
     <?php
