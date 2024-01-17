@@ -25,8 +25,8 @@
         <a class="nav-link" href="../medecin/gestionMedecin.php">
             <h2>médecins</h2>
         </a>
-        <a class="nav-link" href="../logout.php">
-            <h2>déconnection</h2>
+        <a class="nav-link red-button" href="../logout.php">
+            <h2>Déconnexion</h2>
         </a>
     </div>
 </header>

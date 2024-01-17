@@ -126,6 +126,19 @@ body {
   font-weight: bold;
   color: black;
 }
+ 
+.red-button {
+  background: #bc1a1a;
+  color: white;
+  padding: 5% 5%;
+  border-radius: 5px;
+}
+
+.red-button:hover {
+  background: darkred;
+}
+
+
 
 .button-menu-group-image {
   width: 150px;
@@ -193,6 +206,7 @@ label {
   margin: 3% 1%;
   cursor: pointer;
   width: 40%;
+  min-width: 70px;
 }
 
 .rechercher {
