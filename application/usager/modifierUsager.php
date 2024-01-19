@@ -96,13 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Médecin: </label>
                 <select class="ajouter-input" name="medecin-traitant" class="ajouter-input">
                     <?php
-                    $requete = "SELECT * FROM medecin";
-                    if (!$resquery = mysqli_query($link, $requete)) {
+                    $requete_medecin = "SELECT * FROM medecin";
+                    if (!$resquery_medecin = mysqli_query($link, $requete_medecin)) {
                         die("Error:" . mysqli_errno($link) . ":" . mysqli_error($link));
                     } else {
                         ///Traitement de la requête
-                        while ($row = mysqli_fetch_row($resquery)) {
-                            echo "<option class='ajouter-input' value='" . $row[0] . "' " . ($row[0] == $medecin_traitant ? "selected" : "") . ">" . $row[2] . " " . $row[3] . "</option>";
+                        while ($row_medecin = mysqli_fetch_row($resquery_medecin)) {
+                            $selected = ($row_medecin[0] == $row[11]) ? "selected" : "";
+                            echo "<option class='ajouter-input' value='" . $row_medecin[0] . "' " . $selected . ">" . $row_medecin[2] . " " . $row_medecin[3] . "</option>";
                         }
                     }
                     ?>

@@ -20,7 +20,7 @@ $date_naissance = $_POST['date-naissance'];
 $lieu_naissance = $_POST['lieu-naissance'];
 $medecin = $_POST['medecin-traitant'];
 
-$requete = 'INSERT INTO Usager (numero_securite_sociale, civilite, nom, prenom, adresse, date_naissance, lieu_naissance, ville, code_postal, id_medecin_traitant)
+$requete = 'INSERT INTO usager (numero_securite_sociale, civilite, nom, prenom, adresse, date_naissance, lieu_naissance, ville, code_postal, id_medecin_traitant)
             VALUES ("' . $num_secu . '",
                     "' . $civilite . '",
                     "' . $nom . '",
