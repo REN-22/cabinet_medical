@@ -83,7 +83,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <form class="ajouter-medecin-form" action="./ajoutMedecin.php" method="post">
                 <div>
                     <label>Civilité: </label>
-                    <input class="ajouter-input" type="text" name="civilite" placeholder="Monsieur"><br>
+                    <select class="ajouter-input" name="civilite">
+                        <option class="ajouter-input" value="Monsieur" selected="selected">Monsieur</option>
+                        <option class="ajouter-input" value="Madame" selected="selected">Madame</option>
+                    </select><br>
                     <label>Nom: </label>
                     <input class="ajouter-input" type="text" name="nom" placeholder="Dupont"><br>
                     <label>Prénom: </label>

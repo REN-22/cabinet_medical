@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Medecin`
+-- Structure de la table `medecin`
 --
 
-DROP TABLE IF EXISTS `Medecin`;
-CREATE TABLE IF NOT EXISTS `Medecin` (
+DROP TABLE IF EXISTS `medecin`;
+CREATE TABLE IF NOT EXISTS `medecin` (
   `id_medecin` int(11) NOT NULL AUTO_INCREMENT,
   `civilite` varchar(50) COLLATE latin1_bin DEFAULT NULL,
   `nom` varchar(50) COLLATE latin1_bin DEFAULT NULL,
@@ -37,56 +37,51 @@ CREATE TABLE IF NOT EXISTS `Medecin` (
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 --
--- Déchargement des données de la table `Medecin`
+-- Déchargement des données de la table `medecin`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Usager`
+-- Structure de la table `rendez_vous`
 --
 
-DROP TABLE IF EXISTS `Usager`;
-CREATE TABLE IF NOT EXISTS `Usager` (
+DROP TABLE IF EXISTS `rendez_vous`;
+CREATE TABLE IF NOT EXISTS `rendez_vous` (
+  `id_usager` int(11) NOT NULL,
+  `id_medecin` int(11) NOT NULL,
+  `date_RV` date NOT NULL,
+  `heure_RV` time NOT NULL,
+  `duree` time DEFAULT NULL,
+  PRIMARY KEY (`id_usager`,`id_medecin`,`date_RV`,`heure_RV`),
+  KEY `FKid_medecin` (`id_medecin`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `usager`
+--
+
+DROP TABLE IF EXISTS `usager`;
+CREATE TABLE IF NOT EXISTS `usager` (
   `id_usager` int(11) NOT NULL AUTO_INCREMENT,
-  `numero_securite_sociale` int(11) DEFAULT NULL,
+  `num_secu` varchar(16) COLLATE latin1_bin DEFAULT NULL,
   `civilite` varchar(50) COLLATE latin1_bin DEFAULT NULL,
   `nom` varchar(50) COLLATE latin1_bin DEFAULT NULL,
   `prenom` varchar(50) COLLATE latin1_bin DEFAULT NULL,
   `adresse` varchar(50) COLLATE latin1_bin DEFAULT NULL,
   `date_naissance` date DEFAULT NULL,
   `lieu_naissance` varchar(50) COLLATE latin1_bin DEFAULT NULL,
-  `ville` varchar(50) COLLATE latin1_bin DEFAULT NULL,
-  `code_postal` char(5) COLLATE latin1_bin DEFAULT NULL,
-  `id_medecin_traitant` int(11) DEFAULT NULL,
   `id_medecin` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_usager`),
-  FOREIGN KEY (`id_medecin`) REFERENCES `Medecin` (`id_medecin`)
+  UNIQUE KEY `num_secu` (`num_secu`),
+  KEY `FK_Usager_id_medecin` (`id_medecin`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 --
--- Déchargement des données de la table `Usager`
+-- Déchargement des données de la table `usager`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Rendez_vous`
---
-
-DROP TABLE IF EXISTS `Rendez_vous`;
-CREATE TABLE IF NOT EXISTS `Rendez_vous` (
-  `id_usager` int(11) NOT NULL,
-  `id_medecin` int(11) NOT NULL,
-  `id_rdv` int(11) NOT NULL AUTO_INCREMENT,
-  `date_RV` date NOT NULL,
-  `heure_RV` time NOT NULL,
-  `duree` time DEFAULT NULL,
-  PRIMARY KEY (`id_rdv`),
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
-
--- --------------------------------------------------------
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,0 +1,4 @@
+http://projphpcabinet.alwaysdata.net/
+
+login "admin"
+mdp "admin"

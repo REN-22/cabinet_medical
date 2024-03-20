@@ -92,20 +92,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     </table>
 
     <?php
-    $server = "localhost";
-    $login = "root";
-    $mdp = "";
-    $db = "cabinet";
-
-    $link = mysqli_connect($server, $login, $mdp, $db) or die("Error " . mysqli_error($link));
-
-    if ($link->connect_errno) {
-        echo "Failed to connect to MySQL: " . $link->connect_error;
-        exit();
-    }
+    require("../components/configDB.php");
 
     $requete = 'SELECT * FROM medecin';
-
     ?>
 
     <div class="ajouter">
