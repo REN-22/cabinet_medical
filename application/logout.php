@@ -1,6 +1,7 @@
 <?php
-session_start();
-session_destroy(); // détruit toutes les données associées à la session courante
-header('Location: index.php'); // redirige vers la page de connexion
+echo '<script>';
+echo 'localStorage.removeItem("token");'; // supprime le token stocké localement
+echo 'window.location.href = "index.php";'; // redirige vers la page de connexion
+echo '</script>';
 exit;
 ?>
