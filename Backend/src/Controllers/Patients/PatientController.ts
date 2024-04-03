@@ -30,7 +30,12 @@ export async function CreateUsager(req: any, res: any): Promise<void> {
         const idUsager = await createUsager(num_secu, civilite, nom, prenom, sexe, adresse, code_postal, ville, date_nais, lieu_nais, id_medecin)
 
         res.status(201).json({ message : 'Usager créé avec succès.', idUsager})
-    } catch (error) {
+    } catch (error: any) {
+        if (error.code === 'ER_DUP_ENTRY') {
+            return res.status(409).json({
+                message: 'Un usager avec le même numéro de sécurité sociale existe déjà.',
+            })
+        }
         console.error('Erreur lors de la création de l\'usager :', error)
         res.status(500).json({
             message: "Une erreur s'est produite lors de la création de l'usager.",
