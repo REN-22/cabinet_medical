@@ -18,7 +18,7 @@ export async function CreateMedecin(req: any, res: any): Promise<void> {
 
     const idMedecin = createMedecin(civilite, nom, prenom)
 
-    res.status(201).json({ id: idMedecin, civilite, nom, prenom })
+    res.status(201).json({ message: 'Medecin crer avec succès' })
   } catch (error) {
     console.error('Erreur lors de la création du médecin :', error)
     res.status(500).json({
@@ -44,12 +44,30 @@ export async function GetAllMedecins(req: any, res: any): Promise<void> {
 export async function UpdateMedecin(req: any, res: any): Promise<void> {
   try {
     const { id } = req.params
-    const { civilite, nom, prenom } = req.body
+    let { civilite, nom, prenom } = req.body
 
     if (!id) {
-      return res.status(400).json({
+      res.status(400).json({
         message: 'Toutes les informations requises ne sont pas fournies.',
       })
+    }
+
+    const medecin = await getMedecinById(id)
+
+    if (!medecin) {
+      res.status(404).json({
+        message: `Aucun médecin trouvé avec l'identifiant ${id}. La mise à jour n'a pas été effectuée.`,
+      })
+    }
+
+    if (civilite === undefined) {
+      civilite = medecin.civilite
+    }
+    if (nom === undefined) {
+      nom = medecin.nom
+    }
+    if (prenom === undefined) {
+      prenom = medecin.prenom
     }
 
     const isUpdated = await updateMedecin(id, civilite, nom, prenom)
