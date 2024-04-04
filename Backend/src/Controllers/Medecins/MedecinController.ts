@@ -18,7 +18,7 @@ export async function CreateMedecin(req: any, res: any): Promise<void> {
 
     const idMedecin = createMedecin(civilite, nom, prenom)
 
-    res.status(201).json({ message: 'Medecin crer avec succès' })
+    res.status(201).json({ message: 'Medecin créer avec succès' })
   } catch (error) {
     console.error('Erreur lors de la création du médecin :', error)
     res.status(500).json({

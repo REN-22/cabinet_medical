@@ -27,7 +27,10 @@ export async function CreateUsager(req: any, res: any): Promise<void> {
             })
         }
 
-        const idUsager = await createUsager(num_secu, civilite, nom, prenom, sexe, adresse, code_postal, ville, date_nais, lieu_nais, id_medecin)
+        const [day, month, year] = date_nais.split('/')
+        const formattedDate = new Date(`${year}-${month}-${day}`)
+
+        const idUsager = await createUsager(num_secu, civilite, nom, prenom, sexe, adresse, code_postal, ville, formattedDate, lieu_nais, id_medecin)
 
         res.status(201).json({ message : 'Usager créé avec succès.', idUsager})
     } catch (error: any) {
