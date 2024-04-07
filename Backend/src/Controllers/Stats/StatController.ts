@@ -71,7 +71,7 @@ export async function getStatistiquesPatients(req: Request, res: Response) {
       } else if (usager.sexe.toUpperCase() === 'H') {
         nombreHommes++;
 
-        const age = calculerAge(usager.date_naissance, dateActuelle);
+        const age = calculerAge(new Date(usager.date_naissance), dateActuelle);
         if (age < 25) {
           nombreHommesMoins25++;
         } else if (age >= 25 && age <= 50) {
@@ -109,7 +109,6 @@ function calculerAge(dateNaissance: Date, dateReference: Date): number {
 
     let age = anneeReference - anneeNaissance;
 
-    // Vérifier si la date de naissance n'est pas dans le futur
     if (
       moisReference < moisNaissance ||
       (moisReference === moisNaissance && jourReference < jourNaissance)
@@ -120,8 +119,6 @@ function calculerAge(dateNaissance: Date, dateReference: Date): number {
     return age;
   } else {
     console.error('La date de naissance est invalide :', dateNaissance);
-    return -1; // Valeur d'âge invalide pour signaler le problème
+    return -1;
   }
 }
-
-

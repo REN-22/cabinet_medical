@@ -1,3 +1,5 @@
+import { getMedecinById } from '../../Models/Medecins/MedecinModel'
+import { getUsagerById } from '../../Models/Patients/PatienModel'
 import {
 createRendezVous,
 deleteRendezVous,
@@ -5,8 +7,6 @@ getAllRendezVous,
 getRendezVousById,
 updateRendezVous,
 } from '../../Models/Consultations/ConsultationModel'
-import {getMedecinById} from '../../Models/Medecins/MedecinModel'
-import {getUsagerById} from '../../Models/Patients/PatienModel'
 
 export async function CreateRendezVous(req: any, res: any): Promise<void> {
 try {
@@ -23,8 +23,8 @@ try {
         })
     }
 
-    try { 
-        const usager = await getUsagerById(id_usager) 
+    try {
+        const usager = await getUsagerById(id_usager)
         if (usager === undefined) {
             return res.status(404).json({
                 message: `Aucun usager trouvé avec l'identifiant ${id_usager}.`,
@@ -32,24 +32,25 @@ try {
         }
     } catch (error) {
         return res.status(500).json({
-            message: `erreur innatendue`,
+            message: `Erreur inattendue lors de la recherche de l'usager.`,
         })
     }
-    try { 
-        const medecin = await getMedecinById(id_medecin) 
-    if (medecin === undefined) {
-        return res.status(404).json({
-            message: `Aucun médecin trouvé avec l'identifiant ${id_medecin}.`,
-        })
-    } } catch (error) {
+    try {
+        const medecin = await getMedecinById(id_medecin)
+        if (medecin === undefined) {
+            return res.status(404).json({
+                message: `Aucun médecin trouvé avec l'identifiant ${id_medecin}.`,
+            })
+        }
+    } catch (error) {
         return res.status(500).json({
-            message: `erreur innatendue`,
+            message: `Erreur inattendue lors de la recherche du médecin.`,
         })
     }
 
     const rendezVous = await createRendezVous(id_usager, id_medecin, date_consult, heure_consult, duree_consult)
 
-    res.status(201).json({ message : 'Rendez-vous créé avec succès.', rendezVous})
+    res.status(201).json({ message: 'Rendez-vous créé avec succès.', rendezVous })
 } catch (error: any) {
     console.error('Erreur lors de la création du rendez-vous :', error)
     res.status(500).json({
@@ -90,7 +91,7 @@ try {
         })
     } else {
         res.status(404).json({
-            message: `Aucun rendez-vous trouvé avec les identifiants ${id}, La mise à jour n'a pas été effectuée.`,
+            message: `Aucun rendez-vous trouvé avec les identifiants ${id}. La mise à jour n'a pas été effectuée.`,
         })
     }
 } catch (error) {
@@ -130,7 +131,7 @@ try {
 
 export async function DeleteRendezVous(req: any, res: any): Promise<void> {
 try {
-    const {id} = req.params
+    const { id } = req.params
 
     if (!id) {
         return res.status(400).json({
