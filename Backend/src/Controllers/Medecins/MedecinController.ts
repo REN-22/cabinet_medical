@@ -5,9 +5,17 @@ import {
   getMedecinById,
   updateMedecin,
 } from '../../Models/Medecins/MedecinModel'
+import { verifyToken } from '../VerifyToken/VerifyToken'
 
 export async function CreateMedecin(req: any, res: any): Promise<void> {
   try {
+    const token = req.headers.authorization
+    const isTokenValid = await verifyToken(token)
+    if (!isTokenValid) {
+      return res.status(401).json({
+        message: 'Token invalide ou expiré.',
+      })
+    }
     const { civilite, nom, prenom } = req.body
 
     if (!civilite || !nom || !prenom) {
@@ -29,6 +37,13 @@ export async function CreateMedecin(req: any, res: any): Promise<void> {
 
 export async function GetAllMedecins(req: any, res: any): Promise<void> {
   try {
+    const token = req.headers.authorization
+    const isTokenValid = await verifyToken(token)
+    if (!isTokenValid) {
+      return res.status(401).json({
+        message: 'Token invalide ou expiré.',
+      })
+    }
     const medecins = await getAllMedecins() // Utilisation de la fonction getAllMedecins pour récupérer tous les médecins de la base de données
 
     res.status(200).json(medecins)
@@ -43,6 +58,13 @@ export async function GetAllMedecins(req: any, res: any): Promise<void> {
 
 export async function UpdateMedecin(req: any, res: any): Promise<void> {
   try {
+    const token = req.headers.authorization
+    const isTokenValid = await verifyToken(token)
+    if (!isTokenValid) {
+      return res.status(401).json({
+        message: 'Token invalide ou expiré.',
+      })
+    }
     const { id } = req.params
     let { civilite, nom, prenom } = req.body
 
@@ -91,6 +113,13 @@ export async function UpdateMedecin(req: any, res: any): Promise<void> {
 
 export async function GetMedecinById(req: any, res: any): Promise<void> {
   try {
+    const token = req.headers.authorization
+    const isTokenValid = await verifyToken(token)
+    if (!isTokenValid) {
+      return res.status(401).json({
+        message: 'Token invalide ou expiré.',
+      })
+    }
     const { id } = req.params
 
     if (!id) {
@@ -119,6 +148,13 @@ export async function GetMedecinById(req: any, res: any): Promise<void> {
 
 export async function DeleteMedecinById(req: any, res: any): Promise<void> {
   try {
+    const token = req.headers.authorization
+    const isTokenValid = await verifyToken(token)
+    if (!isTokenValid) {
+      return res.status(401).json({
+        message: 'Token invalide ou expiré.',
+      })
+    }
     const { id } = req.params
 
     if (!id) {
