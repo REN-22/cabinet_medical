@@ -38,14 +38,15 @@ async function createMedecin(): Promise<void> {
 async function createRendezVous(): Promise<void> {
   connection.query(
     `CREATE TABLE IF NOT EXISTS rendez_vous (
-    id_usager int(11) NOT NULL,
-    id_medecin int(11) NOT NULL,
-    date_RV date NOT NULL,
-    heure_RV time NOT NULL,
+    id_usager int(11) DEFAULT NULL,
+    id_medecin int(11) DEFAULT NULL,
+    id_rdv int(11) NOT NULL AUTO_INCREMENT,
+    date_RV date DEFAULT NULL,
+    heure_RV time DEFAULT NULL,
     duree time DEFAULT NULL,
-    PRIMARY KEY (id_usager,id_medecin,date_RV,heure_RV),
+    PRIMARY KEY (id_rdv),
     KEY FKid_medecin (id_medecin)
-  ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_bin;`,
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;`,
     async (err: any, result: any) => {
       if (err) {
         console.error(
@@ -67,7 +68,10 @@ async function createUsager(): Promise<void> {
     civilite varchar(50) COLLATE latin1_bin DEFAULT NULL,
     nom varchar(50) COLLATE latin1_bin DEFAULT NULL,
     prenom varchar(50) COLLATE latin1_bin DEFAULT NULL,
+    sexe varchar(50) COLLATE latin1_bin DEFAULT NULL,
     adresse varchar(50) COLLATE latin1_bin DEFAULT NULL,
+    code_postal varchar(50) COLLATE latin1_bin DEFAULT NULL,
+    ville varchar(50) COLLATE latin1_bin DEFAULT NULL,
     date_naissance date DEFAULT NULL,
     lieu_naissance varchar(50) COLLATE latin1_bin DEFAULT NULL,
     id_medecin int(11) DEFAULT NULL,
