@@ -6,7 +6,7 @@ export const app = express()
 export async function SetUpPortAndCore(): Promise<void> {
   app.use(cors())
   app.use(express.json())
-  app.listen(/*process.env.PORT*/ 5000, () => {
+  app.listen(process.env.PORT /*5000*/, () => {
     console.log('Connexion au port ', process.env.PORT, ' réussie')
   })
   app.get('/', (req: any, res: any) => {
