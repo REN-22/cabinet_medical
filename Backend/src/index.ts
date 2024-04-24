@@ -3,13 +3,13 @@ import { SetUpBD } from './Settings/SetUpBD'
 import { SetUpPortAndCore, app } from './Settings/Settings'
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import socket from './Settings/WebSocketSetup' // Importez la connexion WebSocket
+
 const medecinRoutes = require('./Routes/Medecins/MedecinRoutes').default
 const patientRoutes = require('./Routes/Patients/PatientRoutes').default
 const consultationRoutes =
   require('./Routes/Consultations/ConsultationRoutes').default
 const statsRoutes = require('./Routes/Stats/StatRoutes').default
-//import { SetUpBD } from "./Settings/SetUpBD";
-//équipe C7
 
 async function AllSetUp(): Promise<void> {
   /* ----- Set Up Routes ----- */
