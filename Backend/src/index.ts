@@ -43,7 +43,11 @@ async function AllSetUp(): Promise<void> {
   }
   const specs = swaggerJsdoc(options)
 
+<<<<<<< HEAD
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+=======
+  app.use('/', swaggerUi.serve, swaggerUi.setup(specs))
+>>>>>>> dc2a3b946abefdfc7c4864c4deeebb664df720dd
 }
 
 AllSetUp()
